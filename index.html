@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Home Page</title>
+    <style>
+      /* CSS code goes here */
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(45deg, #116e47, #bbf067);
+        font-family: sans-serif;
+        font-weight: 100;
+      }
+      header {
+        /* background-color: #333; */
+        color: #fff;
+        padding: 10px;
+      }
+      nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px;
+      }
+      .button {
+        background-color: transparent;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        padding: 20px;
+      }
+      .grid-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 4px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+      footer {
+        /* background-color: #333; */
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="registration.html" target="content">Registration</a></li>
+          <li><a href="records.html" target="content">Records</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+        <a class="button" href="#">Name</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="grid-item" id="grid-item-1"></div>
+      <div class="grid-item" id="grid-item-2"></div>
+      <div class="grid-item" id="grid-item-3"></div>
+      <div class="grid-item" id="grid-item-4"></div>
+      <div class="grid-item" id="grid-item-5"></div>
+      <div class="grid-item" id="grid-item-6"></div>
+    </div>
+
+    <div class="about-content" id="about">
+      <h2>About</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut
+        mauris et ante interdum blandit. Fusce hendrerit, nisl vitae interdum
+        sagittis, sem sapien aliquet nisl, vel venenatis enim orci non dui.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+        cubilia Curae; Phasellus at ullamcorper massa. Fusce non nulla in diam
+        sagittis iaculis. Suspendisse cursus dolor in commodo volutpat. Quisque
+        fermentum purus sed mauris cursus viverra. Vestibulum ante ipsum primis
+        in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc
+        condimentum sapien a volutpat cursus. Mauris sed vestibulum mi. Sed non
+        nunc sit amet orci congue euismod sed a elit. Integer accumsan tortor ut
+        elementum volutpat. Morbi tincidunt metus quis purus finibus interdum.
+      </p>
+    </div>
+
+    <footer>&copy; 2023 My Home Page. All rights reserved.</footer>
+
+    <script>
+      // Fetch data from API and update grid items
+      const apiUrl =
+        "https://newsapi.org/v2/everything?q=apple&from=2023-07-04&to=2023-07-04&sortBy=popularity&apiKey=f7d54802ae9d4e2eb6b90d6e456b63ee";
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          const articles = data.articles; // Assuming the API response contains an 'articles' property with an array of articles
+
+          const gridItems = document.querySelectorAll(".grid-item");
+
+          for (let i = 0; i < gridItems.length; i++) {
+            gridItems[i].textContent = articles[i].title;
+          }
+        })
+        .catch((error) => {
+          console.log("Error fetching data from API:", error);
+        });
+    </script>
+  </body>
+</html>
